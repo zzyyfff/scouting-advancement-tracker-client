@@ -1,0 +1,20 @@
+
+<section id="{{merit_badge.id}}"" class="merit_badge" data-id="{{merit_badge.id}}">
+  <h3>
+    {{merit_badge.name}}
+  </h3>
+  <p>
+    {{#if merit_badge.completed}}
+      Completed!
+    {{else}}
+      In progress.
+    {{/if}}
+  </p>
+  {{#if merit_badge.notes}}
+    <p class"badge-notes">
+      Notes: {{merit_badge.notes}}
+    </p>
+  {{/if}}
+  <button class="editMeritBadgeButton btn btn-outline-info">Edit</button>
+  <button class="deleteMeritBadgeButton btn btn-outline-info">Remove</button>
+</section>

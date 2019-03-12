@@ -5,7 +5,18 @@ $small-form-text: $muted-color;
 $small-form-error-text: $red-damask-color;
 $grey-out-game-color: $charcoal-grey-color;
 
+.alert {
+  height: 30px;
+  line-height: 30px;
+  margin-bottom: 1px;
+  padding: 0 15px;
+}
+
 .auth-status {
+  display: none;
+}
+
+.badges-status {
   display: none;
 }
 
@@ -74,12 +85,79 @@ $grey-out-game-color: $charcoal-grey-color;
   }
 }
 
+main {
+  @include make-container;
+  @include make-container-max-widths;
+
+  .merit_badge {
+    @include make-col-ready;
+    @include media-breakpoint-up(md) {
+      @include make-col(6);
+    }
+    @include media-breakpoint-up(lg) {
+      @include make-col(4);
+    }
+    background: $white;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+    cursor: pointer;
+    outline: none;
+    padding: 1rem;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    small {
+      color: $secondary;
+      display: block;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+  }
+
+  .content {
+    @include make-row;
+
+    &:empty {
+      &::before {
+        color: lighten($info, 25%);
+        content: '';
+        font-size: 10vh;
+        line-height: .85;
+        text-align: center;
+        width: 100%;
+      }
+    }
+
+    &:not(:empty) {
+      border-left: 1px solid;
+      border-top: 1px solid;
+    }
+  }
+}
+
 .muted {
   color: $small-form-text;
 }
 
+.name-display {
+  font-size: 2em;
+}
+
 nav {
   z-index: 9000;
+}
+
+.rank-display {
+  font-size: 1.5em;
+}
+
+.scout-display {
+  border: 1px blue dotted;
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 90vh;
 }
 
 .small-error {

@@ -28,9 +28,11 @@ const getDisplayName = function () {
 const signInSuccess = function (responseData) {
   store.user = responseData.user
   store.displayName = getDisplayName()
-  $('#winner').hide()
   $('#welcome-name').text(`Welcome, ${store.displayName}!`)
+  $('.name-display').text(store.user.first_name + ' ' + store.user.last_name)
+  $('.rank-display').text('Rank: ' + store.user.scout_rank)
   // *****Update Merit Badge stats HERE*****
+  console.log(responseData.user.scout_rank)
   fadeInWelcome()
   fadeOutAuth()
   resetAllForms()

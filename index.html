@@ -116,38 +116,56 @@
 
   <div class="container">
     <div class="row">
-      <div class="initial-auth-form">
-        <div class="sign-in-div">
-          <form id="sign-in-form">
-            <label>Sign in to Tic Tac Toe</label>
-            <input name="credentials[email]" required type="email" placeholder="Email Here" />
-            <input name="credentials[password]" required type="password" placeholder="Password Here" />
-            <input type="submit" value="Sign In!" />
-          </form>
-          <small class="form-text text-muted">No account yet? <a id="register-reveal" href="#">Register for free!</a></small>
+      <div class="d-none d-md-block col-md-2"></div> <!-- left spacer for md and above -->
+      <div class="auth-status alert alert-dark col-12 col-md-8" role="alert"></div>
+      <div class="badges-status alert alert-dark col-12 col-md-8" role="alert"></div>
+      <div class="d-none d-md-block col-md-2"></div> <!-- right spacer for md and above -->
+    </div>
+    <div class="row">
+      <div class="d-none d-md-block col-md-2"></div> <!-- left spacer for md and above -->
+      <div class="scout-display col-12 col-md-8">
+        <!-- auth stuff START-->
+        <div class="initial-auth-form">
+          <div class="sign-in-div">
+            <form id="sign-in-form">
+              <label>Sign in to Tic Tac Toe</label>
+              <input name="credentials[email]" required type="email" placeholder="Email Here" />
+              <input name="credentials[password]" required type="password" placeholder="Password Here" />
+              <input type="submit" value="Sign In!" />
+            </form>
+            <small class="form-text text-muted">No account yet? <a id="register-reveal" href="#">Register for free!</a></small>
+          </div>
+          <div class="sign-up-div">
+            <form id="sign-up-form">
+              <label>Sign up for Tic Tac Toe</label>
+              <input name="credentials[email]" required type="email" placeholder="Email Here" />
+              <input name="credentials[password]" required type="password" placeholder="Password Here" />
+              <input name="credentials[password_confirmation]" required type="password" placeholder="Confirm Password" />
+              <input type="submit" value="Sign Up!" />
+            </form>
+            <small class="form-text text-muted">Already have an account? <a id="sign-in-reveal" href="#">Sign in.</a></small>
+          </div>
         </div>
-        <div class="sign-up-div">
-          <form id="sign-up-form">
-            <label>Sign up for Tic Tac Toe</label>
-            <input name="credentials[email]" required type="email" placeholder="Email Here" />
-            <input name="credentials[password]" required type="password" placeholder="Password Here" />
-            <input name="credentials[password_confirmation]" required type="password" placeholder="Confirm Password" />
-            <input type="submit" value="Sign Up!" />
-          </form>
-          <small class="form-text text-muted">Already have an account? <a id="sign-in-reveal" href="#">Sign in.</a></small>
-        </div>
+        <!-- auth stuff END-->
+        <!-- main display content START -->
+        <main class="container">
+          <div class="name-display col-12"></div>
+          <div class="rank-display col-12"></div>
+          <button id="getMeritBadgesButton" class="btn btn-info mr-2">Show Merit Badges!</button>
+          <button id="clearMeritBadgesButton" class="btn btn-outline-info">Clear Merit Badges</button>
+          <!-- handlebars div ? check class notes-->
+          <div id="content" class="content"></div>
+        </main>
+        <!-- main display content END -->
       </div>
+      <div class="d-none d-md-block col-md-2"></div> <!-- right spacer for md and above -->
     </div>
   </div>
 
-  <div class="auth-status alert alert-dark" role="alert"></div>
 
 
 
-  <main>
-    <!-- handlebars div ? check class notes-->
-    <div id="content" class="content"></div>
-  </main>
+
 </body>
 
 </html>

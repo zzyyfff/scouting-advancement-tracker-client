@@ -7,7 +7,9 @@
 // require('./example')
 
 const authEvents = require('./auth/events')
+const meritBadgeEvents = require('./merit_badges/events')
 
 $(() => {
   authEvents.addHandlers()
+  meritBadgeEvents.addHandlers()
 })

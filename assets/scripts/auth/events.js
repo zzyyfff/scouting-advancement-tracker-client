@@ -49,6 +49,14 @@ const onPassChangeClose = function (event) {
   ui.resetPassChangeForm($('#change-password-form'))
 }
 
+const onRankChangeClose = function (event) {
+  ui.resetAllForms()
+}
+
+const onNameChangeClose = function (event) {
+  ui.resetAllForms()
+}
+
 const addHandlers = () => {
   $('#sign-up-form').on('submit', onSignUp)
   $('#sign-in-form').on('submit', onSignIn)
@@ -57,6 +65,8 @@ const addHandlers = () => {
   $('#register-reveal').on('click', onRegisterReveal)
   $('#sign-in-reveal').on('click', onSignInReveal)
   $('#pass-change-close').on('click', onPassChangeClose)
+  $('#rank-change-close').on('click', onRankChangeClose)
+  $('#name-change-close').on('click', onNameChangeClose)
 }
 
 module.exports = {
