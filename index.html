@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Example</title>
+  <title>Scouting Tracker</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Do not add `link` tags-->
@@ -14,7 +14,136 @@
 </head>
 
 <body>
-  <h1>scouting-advancement-tracker-client</h1>
+  <nav class="navbar navbar-default navbar-static-top navbar-light bg-light">
+    <a class="nav-item navbar-brand" href="#">Scouting Tracker</a>
+    <ul class="nav">
+      <li class="nav-item dropdown ml-auto welclome-dropdown">
+        <a id="welcome-name" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <h4 class="dropdown-header">Advancement Stats:</h4>
+          <h6 id="scout-rank" class="dropdown-header"></h6>
+          <h6 id="total-merit-badges" class="dropdown-header"></h6>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" id="change-rank-request" href="#" data-toggle="modal" data-target="#formModalRank">Change Rank</a>
+          <a class="dropdown-item" id="change-name-request" href="#" data-toggle="modal" data-target="#formModalName">Change Name</a>
+          <a class="dropdown-item" id="change-password-request" href="#" data-toggle="modal" data-target="#formModalCenter">Change Password</a>
+          <a class="dropdown-item" id="sign-out" href="#">Sign Out</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Change Rank Modal -->
+  <div class="modal fade" id="formModalRank" tabindex="-1" role="dialog" aria-labelledby="formModalRankTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <form id="change-rank-form">
+          <div class="modal-header">
+            <label for="Changing rank" class="modal-title" id="formModalRankTitle">Change Rank:</label>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <input name="rank_change[rank]" required type="text" placeholder="Enter New Rank" /><br>
+              <small id="rank-change-help" class="form-text muted">Enter your new rank to make the change.<br>&nbsp;</small>
+              <button id="rank-change-close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Change Rank</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+
+  <!-- Change Name Modal -->
+  <div class="modal fade" id="formModalName" tabindex="-1" role="dialog" aria-labelledby="formModalNameTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <form id="change-name-form">
+          <div class="modal-header">
+            <label for="Changing name" class="modal-title" id="formModalNameTitle">Change Name:</label>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <input name="display_name_change[first]" required type="text" placeholder="Enter First Name" /><br>
+              <input name="display_name_change[last]" required type="text" placeholder="Enter Last Name" />
+              <small id="name-change-help" class="form-text muted">Enter your first and last names to make the change.<br>&nbsp;</small>
+              <button id="name-change-close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Change Name</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+
+  <!-- Change Password Modal -->
+  <div class="modal fade" id="formModalCenter" tabindex="-1" role="dialog" aria-labelledby="formModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <form id="change-password-form">
+          <div class="modal-header">
+            <label for="Changing password" class="modal-title" id="formModalCenterTitle">Change password:</label>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <input name="passwords[old]" required type="password" placeholder="Enter Old Password" /><br>
+              <input name="passwords[new]" required type="password" placeholder="Enter New Password" />
+              <small id="pass-change-help" class="form-text muted">Enter both your old and new passwords to make the change.<br>&nbsp;</small>
+              <button id="pass-change-close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Change Password</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+
+
+
+
+
+  <div class="container">
+    <div class="row">
+      <div class="initial-auth-form">
+        <div class="sign-in-div">
+          <form id="sign-in-form">
+            <label>Sign in to Tic Tac Toe</label>
+            <input name="credentials[email]" required type="email" placeholder="Email Here" />
+            <input name="credentials[password]" required type="password" placeholder="Password Here" />
+            <input type="submit" value="Sign In!" />
+          </form>
+          <small class="form-text text-muted">No account yet? <a id="register-reveal" href="#">Register for free!</a></small>
+        </div>
+        <div class="sign-up-div">
+          <form id="sign-up-form">
+            <label>Sign up for Tic Tac Toe</label>
+            <input name="credentials[email]" required type="email" placeholder="Email Here" />
+            <input name="credentials[password]" required type="password" placeholder="Password Here" />
+            <input name="credentials[password_confirmation]" required type="password" placeholder="Confirm Password" />
+            <input type="submit" value="Sign Up!" />
+          </form>
+          <small class="form-text text-muted">Already have an account? <a id="sign-in-reveal" href="#">Sign in.</a></small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="auth-status alert alert-dark" role="alert"></div>
+
+
+
   <main>
     <!-- handlebars div ? check class notes-->
     <div id="content" class="content"></div>

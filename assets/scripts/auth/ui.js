@@ -1,8 +1,6 @@
 'use strict'
 
 const store = require('../store')
-const gameLogic = require('../game/game-logic')
-const gameUi = require('../game/ui')
 
 const createFeedback = function (feedbackText, delay) {
   $('.auth-status').html(feedbackText)
@@ -19,12 +17,20 @@ const signUpSuccess = function (responseData) {
   fadeInSignIn()
 }
 
+const getDisplayName = function () {
+  if (store.user.first_name) {
+    return store.user.first_name
+  } else {
+    return store.user.email.split('@', 1)[0]
+  }
+}
+
 const signInSuccess = function (responseData) {
   store.user = responseData.user
-  const name = store.user.email.split('@', 1)
+  store.displayName = getDisplayName()
   $('#winner').hide()
-  $('#welcome-name').html(`Welcome, ${name[0]}!`)
-  gameUi.updateStats()
+  $('#welcome-name').text(`Welcome, ${store.displayName}!`)
+  // *****Update Merit Badge stats HERE*****
   fadeInWelcome()
   fadeOutAuth()
   resetAllForms()
@@ -55,18 +61,10 @@ const changePasswordFailure = function (responseData) {
 const signOutSuccess = function (responseData) {
   store.user = null
   fadeOutWelcome()
-  gameUi.fadeOutResetGameButton()
-  gameUi.fadeOutGameStatus()
   resetAllForms()
   fadeInAuth()
-  $('#start-game-button').html('Start A New Game!')
-  setTimeout(gameUi.fadeInNewGameButton, 310)
 
-  // reset board with blank game on sign-out
-  const game = new gameLogic.Game(0, 0, 'dummy@game')
-  gameUi.renderBoard(game)
-  store.game = null
-  store.readyToAcceptNewGame = true
+  // reset interface....
 }
 
 const failure = function (responseData) {

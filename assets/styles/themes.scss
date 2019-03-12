@@ -1,0 +1,91 @@
+$dropdown-text-color: $charcoal-grey-color;
+$auth-form-background-color: $paper-white-color;
+$auth-form-background-color: $paper-white-color;
+$small-form-text: $muted-color;
+$small-form-error-text: $red-damask-color;
+$grey-out-game-color: $charcoal-grey-color;
+
+.auth-status {
+  display: none;
+}
+
+.dropdown-toggle {
+  color: $dropdown-text-color;
+}
+
+.initial-auth-form {
+  align-items: center;
+  background-color: $auth-form-background-color;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 40;
+
+  > .sign-in-div {
+    align-items: center;
+    background-color: $auth-form-background-color;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 50;
+
+    > form {
+      align-items: flex-end;
+      display: flex;
+      flex-direction: column;
+
+      > label {
+        align-self: flex-start;
+      }
+    }
+  }
+
+  > .sign-up-div {
+    align-items: center;
+    background-color: $auth-form-background-color;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 45;
+
+    > form {
+      align-items: flex-end;
+      display: flex;
+      flex-direction: column;
+
+      > label {
+        align-self: flex-start;
+      }
+    }
+  }
+}
+
+.muted {
+  color: $small-form-text;
+}
+
+nav {
+  z-index: 9000;
+}
+
+.small-error {
+  color: $small-form-error-text;
+}
+
+.welclome-dropdown {
+  display: none;
+}
