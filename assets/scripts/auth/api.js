@@ -28,6 +28,28 @@ const changePassword = function (passwords) {
   })
 }
 
+const changeRank = function (data) {
+  return $.ajax({
+    url: `${config.apiUrl}/change-rank`,
+    method: 'PATCH',
+    headers: {
+      'Authorization': 'Token token=' + store.user.token
+    },
+    data: data
+  })
+}
+
+const changeName = function (data) {
+  return $.ajax({
+    url: `${config.apiUrl}/change-name`,
+    method: 'PATCH',
+    headers: {
+      'Authorization': 'Token token=' + store.user.token
+    },
+    data: data
+  })
+}
+
 const signOut = function () {
   return $.ajax({
     url: `${config.apiUrl}/sign-out`,
@@ -42,5 +64,7 @@ module.exports = {
   signUp,
   signIn,
   changePassword,
+  changeRank,
+  changeName,
   signOut
 }

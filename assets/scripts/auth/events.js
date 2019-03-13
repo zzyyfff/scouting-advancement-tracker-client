@@ -3,6 +3,7 @@
 const getFormFields = require('../../../lib/get-form-fields')
 const api = require('./api')
 const ui = require('./ui')
+const store = require('../store')
 
 const onSignUp = function (event) {
   event.preventDefault()
@@ -49,18 +50,36 @@ const onPassChangeClose = function (event) {
   ui.resetPassChangeForm($('#change-password-form'))
 }
 
+const onChangeRank = function (event) {
+  event.preventDefault()
+  const formData = getFormFields(event.target)
+  api.changeRank(formData)
+    .then(ui.changeRankSuccess)
+    .catch(ui.failure)
+}
+
 const onRankChangeClose = function (event) {
-  ui.resetAllForms()
+  store.resetAllForms()
+}
+
+const onChangeName = function (event) {
+  event.preventDefault()
+  const formData = getFormFields(event.target)
+  api.changeName(formData)
+    .then(ui.changeNameSuccess)
+    .catch(ui.failure)
 }
 
 const onNameChangeClose = function (event) {
-  ui.resetAllForms()
+  store.resetAllForms()
 }
 
 const addHandlers = () => {
   $('#sign-up-form').on('submit', onSignUp)
   $('#sign-in-form').on('submit', onSignIn)
   $('#change-password-form').on('submit', onChangePassword)
+  $('#change-rank-form').on('submit', onChangeRank)
+  $('#change-name-form').on('submit', onChangeName)
   $('#sign-out').on('click', onSignOut)
   $('#register-reveal').on('click', onRegisterReveal)
   $('#sign-in-reveal').on('click', onSignInReveal)

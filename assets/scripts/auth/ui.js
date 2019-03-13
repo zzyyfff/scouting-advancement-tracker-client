@@ -27,13 +27,17 @@ const getDisplayName = function () {
   }
 }
 
-const signInSuccess = function (responseData) {
-  meritBadgesUi.clearMeritBadges()
-  store.user = responseData.user
+const updateUserDisplay = function () {
   store.displayName = getDisplayName()
   $('#welcome-name').text(`Welcome, ${store.displayName}!`)
   $('.name-display').text(store.user.first_name + ' ' + store.user.last_name)
   $('.rank-display').text('Rank: ' + store.user.scout_rank)
+}
+
+const signInSuccess = function (responseData) {
+  meritBadgesUi.clearMeritBadges()
+  store.user = responseData.user
+  updateUserDisplay()
   // ***** GET Merit Badges Gallery HERE*****
   meritBadgesApi.getMeritBadges()
     .then(meritBadgesUi.getMeritBadgesSuccess)
@@ -128,6 +132,21 @@ store.resetAllForms = function () {
   $('form').find('input:text, input:password, input:file, select, textarea').val('')
 }
 
+const changeRankSuccess = function (responseData) {
+  store.user.scout_rank = responseData.user.scout_rank
+  updateUserDisplay()
+  $('#formModalRank').modal('hide')
+  store.resetAllForms()
+}
+
+const changeNameSuccess = function (responseData) {
+  store.user.first_name = responseData.user.first_name
+  store.user.last_name = responseData.user.last_name
+  updateUserDisplay()
+  $('#formModalName').modal('hide')
+  store.resetAllForms()
+}
+
 module.exports = {
   signUpSuccess,
   signUpFailure,
@@ -135,6 +154,8 @@ module.exports = {
   signInFailure,
   changePasswordSuccess,
   changePasswordFailure,
+  changeRankSuccess,
+  changeNameSuccess,
   signOutSuccess,
   signOutFailure,
   createFeedback,
