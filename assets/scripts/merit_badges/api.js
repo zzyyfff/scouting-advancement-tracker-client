@@ -34,9 +34,20 @@ const updateMeritBadge = function (id, formData) {
   })
 }
 
+const createMeritBadge = function (formData) {
+  return $.ajax({
+    url: `${config.apiUrl}/merit_badges`,
+    method: 'POST',
+    headers: {
+      'Authorization': 'Token token=' + store.user.token
+    },
+    data: formData
+  })
+}
 
 module.exports = {
   getMeritBadges,
   deleteMeritBadge,
-  updateMeritBadge
+  updateMeritBadge,
+  createMeritBadge
 }

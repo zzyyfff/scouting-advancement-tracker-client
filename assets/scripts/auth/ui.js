@@ -15,7 +15,7 @@ const createFeedback = function (feedbackText, delay) {
 
 const signUpSuccess = function (responseData) {
   createFeedback('Sign-up successfull.', 3000)
-  resetAllForms()
+  store.resetAllForms()
   fadeInSignIn()
 }
 
@@ -40,13 +40,13 @@ const signInSuccess = function (responseData) {
     .catch(meritBadgesUi.failure)
   fadeInWelcome()
   fadeOutAuth()
-  resetAllForms()
+  store.resetAllForms()
 }
 
 const changePasswordSuccess = function (responseData) {
   $('#formModalCenter').modal('hide')
   createFeedback(`Successfully changed password.`, 3000)
-  resetAllForms()
+  store.resetAllForms()
   $('#pass-change-help').removeClass('small-error')
   $('#pass-change-help').addClass('muted')
   $('#pass-change-help').html(`Enter both your old and new passwords to make the change.<br>&nbsp;`)
@@ -58,7 +58,7 @@ const changePasswordFailure = function (responseData) {
     signOutSuccess()
     $('#formModalCenter').modal('hide')
   } else {
-    resetAllForms()
+    store.resetAllForms()
     $('#pass-change-help').removeClass('muted')
     $('#pass-change-help').addClass('small-error')
     $('#pass-change-help').html(`Incorrect Entry. Please enter your correct old and new passwords to make the change.<br>&nbsp;`)
@@ -68,7 +68,7 @@ const changePasswordFailure = function (responseData) {
 const signOutSuccess = function (responseData) {
   store.user = null
   fadeOutWelcome()
-  resetAllForms()
+  store.resetAllForms()
   fadeInAuth()
   meritBadgesUi.clearMeritBadges()
 }
@@ -78,12 +78,12 @@ const failure = function (responseData) {
 }
 
 const signInFailure = function (responseData) {
-  resetAllForms()
+  store.resetAllForms()
   createFeedback(`Incorrect username or password; please try again.`, 4000)
 }
 
 const signUpFailure = function (responseData) {
-  resetAllForms()
+  store.resetAllForms()
   createFeedback(`Username already taken or passwords do not patch; please try again.`, 4000)
 }
 
@@ -124,7 +124,7 @@ const resetPassChangeForm = function (form) {
   $('#pass-change-help').html(`Enter both your old and new passwords to make the change.<br>&nbsp;`)
 }
 
-const resetAllForms = function () {
+store.resetAllForms = function () {
   $('form').find('input:text, input:password, input:file, select, textarea').val('')
 }
 

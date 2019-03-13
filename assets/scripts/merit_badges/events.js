@@ -46,11 +46,20 @@ const onCancelEditMeritBadge = (event) => {
   ui.leaveEditMode(store.badgeId)
 }
 
+const onCreateMeritBadge = (event) => {
+  event.preventDefault()
+  const formData = getFormFields(event.target)
+  api.createMeritBadge(formData)
+    .then(ui.createMeritBadgeSuccess)
+    .catch(ui.failure)
+}
+
 const addHandlers = () => {
   $('body').on('click', '.deleteMeritBadgeButton', onDeleteMeritBadge)
   $('body').on('click', '.editMeritBadgeButton', onEditMeritBadge)
   $('body').on('click', '.saveMeritBadgeButton', onSaveMeritBadge)
   $('body').on('click', '.cancelEditMeritBadgeButton', onCancelEditMeritBadge)
+  $('#create-merit-badge-form').on('submit', onCreateMeritBadge)
 }
 
 module.exports = {

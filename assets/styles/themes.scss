@@ -81,6 +81,11 @@ $grey-out-game-color: $charcoal-grey-color;
       > label {
         align-self: flex-start;
       }
+
+      > select {
+        align-self: flex-start;
+        width: 100%;
+      }
     }
   }
 }

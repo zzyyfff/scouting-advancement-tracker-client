@@ -73,6 +73,12 @@ const leaveEditMode = (id) => {
   }
 }
 
+const createMeritBadgeSuccess = (responseData) => {
+  getMeritBadgesSuccess({merit_badges: [responseData.merit_badge]})
+  $('#formModalMeritBadge').modal('hide')
+  store.resetAllForms()
+}
+
 const failure = (error) => {
   console.error(error)
 }
@@ -81,6 +87,7 @@ module.exports = {
   getMeritBadgesSuccess,
   deleteMeritBadgeSuccess,
   updateMeritBadgeSuccess,
+  createMeritBadgeSuccess,
   clearMeritBadges,
   switchToEditMode,
   leaveEditMode,
