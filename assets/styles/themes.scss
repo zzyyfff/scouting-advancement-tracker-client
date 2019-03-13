@@ -85,6 +85,18 @@ $grey-out-game-color: $charcoal-grey-color;
   }
 }
 
+.handlebars {
+  &:not(:empty) {
+    &::before {
+      color: lighten($info, 25%);
+      content: 'Your Merit Badges:';
+      font-size: 1em;
+      text-align: left;
+      width: 100%;
+    }
+  }
+}
+
 main {
   @include make-container;
   @include make-container-max-widths;
@@ -124,7 +136,7 @@ main {
         color: lighten($info, 25%);
         content: '';
         font-size: 10vh;
-        line-height: .85;
+        line-height: 0.85;
         text-align: center;
         width: 100%;
       }
@@ -162,6 +174,11 @@ nav {
 
 .small-error {
   color: $small-form-error-text;
+}
+
+textarea {
+  width: 100%;
+  height: 4em;
 }
 
 .welclome-dropdown {

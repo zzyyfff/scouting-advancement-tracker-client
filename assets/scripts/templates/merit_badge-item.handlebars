@@ -1,20 +1,24 @@
-
-<section id="{{merit_badge.id}}"" class="merit_badge" data-id="{{merit_badge.id}}">
-  <h3>
-    {{merit_badge.name}}
-  </h3>
-  <p>
-    {{#if merit_badge.completed}}
-      Completed!
-    {{else}}
-      In progress.
-    {{/if}}
-  </p>
-  {{#if merit_badge.notes}}
-    <p class"badge-notes">
-      Notes: {{merit_badge.notes}}
+<section id="{{merit_badge.id}}" class="merit_badge" data-id="{{merit_badge.id}}">
+  <form id="badge-form-{{merit_badge.id}}" class="badge-form">
+    <h3>
+      {{merit_badge.name}}
+    </h3>
+    <p class="badge-completed">
+      {{#if merit_badge.completed}}
+        Completed!
+      {{else}}
+        In progress.
+      {{/if}}
     </p>
-  {{/if}}
-  <button class="editMeritBadgeButton btn btn-outline-info">Edit</button>
-  <button class="deleteMeritBadgeButton btn btn-outline-info">Remove</button>
+    <p>&nbsp;</p>
+    {{#if merit_badge.notes}}
+      <p class="badge-notes">
+        Notes: {{merit_badge.notes}}
+      </p>
+    {{else}}
+      <p class="badge-notes"></p>
+    {{/if}}
+  </form>
+  <button id="editMeritBadgeButton-{{merit_badge.id}}" class="editMeritBadgeButton btn btn-outline-info">Edit</button>
+  <button id="deleteMeritBadgeButton-{{merit_badge.id}}" class="deleteMeritBadgeButton btn btn-outline-info">Remove</button>
 </section>

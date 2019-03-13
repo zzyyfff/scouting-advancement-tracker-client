@@ -1,6 +1,8 @@
 'use strict'
 
 const store = require('../store')
+const meritBadgesUi = require('../merit_badges/ui')
+const meritBadgesApi = require('../merit_badges/api')
 
 const createFeedback = function (feedbackText, delay) {
   $('.auth-status').html(feedbackText)
@@ -26,13 +28,16 @@ const getDisplayName = function () {
 }
 
 const signInSuccess = function (responseData) {
+  meritBadgesUi.clearMeritBadges()
   store.user = responseData.user
   store.displayName = getDisplayName()
   $('#welcome-name').text(`Welcome, ${store.displayName}!`)
   $('.name-display').text(store.user.first_name + ' ' + store.user.last_name)
   $('.rank-display').text('Rank: ' + store.user.scout_rank)
-  // *****Update Merit Badge stats HERE*****
-  console.log(responseData.user.scout_rank)
+  // ***** GET Merit Badges Gallery HERE*****
+  meritBadgesApi.getMeritBadges()
+    .then(meritBadgesUi.getMeritBadgesSuccess)
+    .catch(meritBadgesUi.failure)
   fadeInWelcome()
   fadeOutAuth()
   resetAllForms()
@@ -65,8 +70,7 @@ const signOutSuccess = function (responseData) {
   fadeOutWelcome()
   resetAllForms()
   fadeInAuth()
-
-  // reset interface....
+  meritBadgesUi.clearMeritBadges()
 }
 
 const failure = function (responseData) {
