@@ -14,6 +14,7 @@
 </head>
 
 <body>
+  <!-- START nav bar -->
   <nav class="navbar navbar-default navbar-static-top navbar-light">
     <a class="nav-item navbar-brand" href="#">Scouting Tracker</a>
     <ul class="nav">
@@ -33,6 +34,7 @@
       </li>
     </ul>
   </nav>
+  <!-- END nav bar -->
 
   <!-- Change Rank Modal -->
   <div class="modal fade" id="formModalRank" tabindex="-1" role="dialog" aria-labelledby="formModalRankTitle" aria-hidden="true">
@@ -302,7 +304,7 @@
         <div class="initial-auth-form">
           <div class="sign-in-div">
             <form id="sign-in-form">
-              <label>Sign in to Tic Tac Toe</label>
+              <label>Sign in to Scout Tracker</label>
               <input name="credentials[email]" required type="email" placeholder="Email Here" />
               <input name="credentials[password]" required type="password" placeholder="Password Here" />
               <input type="submit" value="Sign In!" />
@@ -311,7 +313,7 @@
           </div>
           <div class="sign-up-div">
             <form id="sign-up-form">
-              <label>Sign up for Tic Tac Toe</label>
+              <label>Sign up for Scout Tracker</label>
               <input name="credentials[email]" required type="email" placeholder="Email Here" />
               <input name="credentials[password]" required type="password" placeholder="Password Here" />
               <input name="credentials[password_confirmation]" required type="password" placeholder="Confirm Password" />
@@ -333,6 +335,7 @@
           </div>
         </div>
         <!-- auth stuff END-->
+
         <!-- main display content START -->
         <main class="container">
           <div class="row">
@@ -353,10 +356,6 @@
       <div class="d-none d-md-block col-md-2"></div> <!-- right spacer for md and above -->
     </div>
   </div>
-
-
-
-
 
 </body>
 

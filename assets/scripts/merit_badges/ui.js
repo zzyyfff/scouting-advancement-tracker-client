@@ -118,11 +118,11 @@ const failure = (error) => {
   createFeedback(error, 3000)
 }
 const createFeedback = function (feedbackText, delay) {
-  $('.auth-status').html(feedbackText)
-  $('.auth-status').fadeIn(300)
+  $('.badges-status').html(feedbackText)
+  $('.badges-status').fadeIn(300)
 
   setTimeout(() => {
-    $('.auth-status').fadeOut(300)
+    $('.badges-status').fadeOut(300)
   }, delay)
 }
 

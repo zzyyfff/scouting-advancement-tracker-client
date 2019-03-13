@@ -130,9 +130,10 @@ main {
     @include media-breakpoint-up(lg) {
       @include make-col(4);
     }
-    border-bottom: 1px solid;
-    border-right: 1px solid;
+    border: 1px solid;
     cursor: pointer;
+    margin-right: -1px;
+    margin-bottom: -1px;
     outline: none;
     padding: 1rem;
 
@@ -160,11 +161,6 @@ main {
         text-align: center;
         width: 100%;
       }
-    }
-
-    &:not(:empty) {
-      border-left: 1px solid;
-      border-top: 1px solid;
     }
   }
 }
