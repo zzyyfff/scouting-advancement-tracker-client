@@ -14,15 +14,16 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-default navbar-static-top navbar-light bg-light">
+  <nav class="navbar navbar-default navbar-static-top navbar-light">
     <a class="nav-item navbar-brand" href="#">Scouting Tracker</a>
     <ul class="nav">
       <li class="nav-item dropdown ml-auto welclome-dropdown">
         <a id="welcome-name" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
           <h4 class="dropdown-header">Advancement Stats:</h4>
-          <h6 id="scout-rank" class="dropdown-header"></h6>
-          <h6 id="total-merit-badges" class="dropdown-header"></h6>
+          <h6 id="badges-completed" class="dropdown-header"></h6>
+          <h6 id="badges-in-progress" class="dropdown-header"></h6>
+          <h6 id="badges-total" class="dropdown-header"></h6>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" id="change-rank-request" href="#" data-toggle="modal" data-target="#formModalRank">Change Rank</a>
           <a class="dropdown-item" id="change-name-request" href="#" data-toggle="modal" data-target="#formModalName">Change Name</a>
@@ -46,8 +47,17 @@
           </div>
           <div class="modal-body">
             <div class="form-group">
-              <input name="rank_change[rank]" required type="text" placeholder="Enter New Rank" /><br>
-              <small id="rank-change-help" class="form-text muted">Enter your new rank to make the change.<br>&nbsp;</small>
+              <p><select name="rank_change[rank]" required>
+                  <option value="" selected="true" disabled="disabled">-Select Scout Rank-</option>
+                  <option value="Scout">Scout</option>
+                  <option value="Tenderfoot">Tenderfoot</option>
+                  <option value="Second Class">Second Class</option>
+                  <option value="First Class">First Class</option>
+                  <option value="Star">Star</option>
+                  <option value="Life">Life</option>
+                  <option value="Eagle Scout">Eagle Scout</option>
+                </select><br></p>
+              <small id="rank-change-help" class="form-text muted">Select your new rank.<br>&nbsp;</small>
               <button id="rank-change-close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary">Change Rank</button>
             </div>
@@ -71,8 +81,8 @@
           </div>
           <div class="modal-body">
             <div class="form-group">
-              <input name="display_name_change[first]" required type="text" placeholder="Enter First Name" /><br>
-              <input name="display_name_change[last]" required type="text" placeholder="Enter Last Name" />
+              <input id="first-name-field" name="display_name_change[first]" required type="text" placeholder="Enter First Name" /><br>
+              <input id="last-name-field" name="display_name_change[last]" required type="text" placeholder="Enter Last Name" />
               <small id="name-change-help" class="form-text muted">Enter new first and last names to make the change.<br>&nbsp;</small>
               <button id="name-change-close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary">Change Name</button>
@@ -124,145 +134,145 @@
           <div class="modal-body">
             <div class="form-group">
               <p><select name="merit_badge[name]" required>
-                <option value="" selected="true" disabled="disabled">-Select Merit Badge-</option>
-                <option value="American Business">American Business</option>
-                <option value="American Cultures">American Cultures</option>
-                <option value="American Heritage">American Heritage</option>
-                <option value="American Labor">American Labor</option>
-                <option value="Animal Science">Animal Science</option>
-                <option value="Animation">Animation</option>
-                <option value="Archaeology">Archaeology</option>
-                <option value="Archery">Archery</option>
-                <option value="Architecture">Architecture</option>
-                <option value="Art">Art</option>
-                <option value="Astronomy">Astronomy</option>
-                <option value="Athletics">Athletics</option>
-                <option value="Automotive Maintenance">Automotive Maintenance</option>
-                <option value="Aviation">Aviation</option>
-                <option value="Backpacking">Backpacking</option>
-                <option value="Basketry">Basketry</option>
-                <option value="Bird Study">Bird Study</option>
-                <option value="Bugling">Bugling</option>
-                <option value="Camping">Camping</option>
-                <option value="Canoeing">Canoeing</option>
-                <option value="Chemistry">Chemistry</option>
-                <option value="Chess">Chess</option>
-                <option value="Citizenship in the Community">Citizenship in the Community</option>
-                <option value="Citizenship in the Nation">Citizenship in the Nation</option>
-                <option value="Citizenship in the World">Citizenship in the World</option>
-                <option value="Climbing">Climbing</option>
-                <option value="Coin Collecting">Coin Collecting</option>
-                <option value="Collections">Collections</option>
-                <option value="Communication">Communication</option>
-                <option value="Composite Materials">Composite Materials</option>
-                <option value="Cooking">Cooking</option>
-                <option value="Crime Prevention">Crime Prevention</option>
-                <option value="Cycling">Cycling</option>
-                <option value="Dentistry">Dentistry</option>
-                <option value="Digital Technology">Digital Technology</option>
-                <option value="Disabilities Awareness">Disabilities Awareness</option>
-                <option value="Dog Care">Dog Care</option>
-                <option value="Drafting">Drafting</option>
-                <option value="Electricity">Electricity</option>
-                <option value="Electronics">Electronics</option>
-                <option value="Emergency Preparedness">Emergency Preparedness</option>
-                <option value="Energy">Energy</option>
-                <option value="Engineering">Engineering</option>
-                <option value="Entrepreneurship">Entrepreneurship</option>
-                <option value="Environmental Science">Environmental Science</option>
-                <option value="Exploration">Exploration</option>
-                <option value="Family Life">Family Life</option>
-                <option value="Farm Mechanics">Farm Mechanics</option>
-                <option value="Fingerprinting">Fingerprinting</option>
-                <option value="Fire Safety">Fire Safety</option>
-                <option value="First Aid">First Aid</option>
-                <option value="Fish and Wildlife Management">Fish and Wildlife Management</option>
-                <option value="Fishing">Fishing</option>
-                <option value="Fly-Fishing">Fly-Fishing</option>
-                <option value="Forestry">Forestry</option>
-                <option value="Game Design">Game Design</option>
-                <option value="Gardening">Gardening</option>
-                <option value="Genealogy">Genealogy</option>
-                <option value="Geocaching">Geocaching</option>
-                <option value="Geology">Geology</option>
-                <option value="Golf">Golf</option>
-                <option value="Graphic Arts">Graphic Arts</option>
-                <option value="Hiking">Hiking</option>
-                <option value="Home Repairs">Home Repairs</option>
-                <option value="Horsemanship">Horsemanship</option>
-                <option value="Indian Lore">Indian Lore</option>
-                <option value="Insect Study">Insect Study</option>
-                <option value="Inventing">Inventing</option>
-                <option value="Journalism">Journalism</option>
-                <option value="Kayaking">Kayaking</option>
-                <option value="Landscape Architecture">Landscape Architecture</option>
-                <option value="Law">Law</option>
-                <option value="Leatherwork">Leatherwork</option>
-                <option value="Lifesaving">Lifesaving</option>
-                <option value="Mammal Study">Mammal Study</option>
-                <option value="Medicine">Medicine</option>
-                <option value="Metalwork">Metalwork</option>
-                <option value="Mining in Society">Mining in Society</option>
-                <option value="Model Design and Building">Model Design and Building</option>
-                <option value="Motorboating">Motorboating</option>
-                <option value="Moviemaking">Moviemaking</option>
-                <option value="Music">Music</option>
-                <option value="Nature">Nature</option>
-                <option value="Nuclear Science">Nuclear Science</option>
-                <option value="Oceanography">Oceanography</option>
-                <option value="Orienteering">Orienteering</option>
-                <option value="Painting">Painting</option>
-                <option value="Personal Fitness">Personal Fitness</option>
-                <option value="Personal Management">Personal Management</option>
-                <option value="Pets">Pets</option>
-                <option value="Photography">Photography</option>
-                <option value="Pioneering">Pioneering</option>
-                <option value="Plant Science">Plant Science</option>
-                <option value="Plumbing">Plumbing</option>
-                <option value="Pottery">Pottery</option>
-                <option value="Programming">Programming</option>
-                <option value="Public Health">Public Health</option>
-                <option value="Public Speaking">Public Speaking</option>
-                <option value="Pulp and Paper">Pulp and Paper</option>
-                <option value="Radio">Radio</option>
-                <option value="Railroading">Railroading</option>
-                <option value="Reading">Reading</option>
-                <option value="Reptile and Amphibian Study">Reptile and Amphibian Study</option>
-                <option value="Rifle Shooting">Rifle Shooting</option>
-                <option value="Robotics">Robotics</option>
-                <option value="Rowing">Rowing</option>
-                <option value="Safety">Safety</option>
-                <option value="Salesmanship">Salesmanship</option>
-                <option value="Scholarship">Scholarship</option>
-                <option value="Scouting Heritage">Scouting Heritage</option>
-                <option value="Scuba Diving">Scuba Diving</option>
-                <option value="Sculpture">Sculpture</option>
-                <option value="Search and Rescue">Search and Rescue</option>
-                <option value="Shotgun Shooting">Shotgun Shooting</option>
-                <option value="Signs, Signals, and Codes">Signs, Signals, and Codes</option>
-                <option value="Skating">Skating</option>
-                <option value="Small-Boat Sailing">Small-Boat Sailing</option>
-                <option value="Snow Sports">Snow Sports</option>
-                <option value="Soil and Water Conservation">Soil and Water Conservation</option>
-                <option value="Space Exploration">Space Exploration</option>
-                <option value="Sports">Sports</option>
-                <option value="Stamp Collecting">Stamp Collecting</option>
-                <option value="Surveying">Surveying</option>
-                <option value="Sustainability">Sustainability</option>
-                <option value="Swimming">Swimming</option>
-                <option value="Textile">Textile</option>
-                <option value="Theater">Theater</option>
-                <option value="Traffic Safety">Traffic Safety</option>
-                <option value="Truck Transportation">Truck Transportation</option>
-                <option value="Veterinary Medicine">Veterinary Medicine</option>
-                <option value="Water Sports">Water Sports</option>
-                <option value="Weather">Weather</option>
-                <option value="Welding">Welding</option>
-                <option value="Whitewater">Whitewater</option>
-                <option value="Wilderness Survival">Wilderness Survival</option>
-                <option value="Wood Carving">Wood Carving</option>
-                <option value="Woodwork">Woodwork</option>
-              </select><br></p>
+                  <option value="" selected="true" disabled="disabled">-Select Merit Badge-</option>
+                  <option value="American Business">American Business</option>
+                  <option value="American Cultures">American Cultures</option>
+                  <option value="American Heritage">American Heritage</option>
+                  <option value="American Labor">American Labor</option>
+                  <option value="Animal Science">Animal Science</option>
+                  <option value="Animation">Animation</option>
+                  <option value="Archaeology">Archaeology</option>
+                  <option value="Archery">Archery</option>
+                  <option value="Architecture">Architecture</option>
+                  <option value="Art">Art</option>
+                  <option value="Astronomy">Astronomy</option>
+                  <option value="Athletics">Athletics</option>
+                  <option value="Automotive Maintenance">Automotive Maintenance</option>
+                  <option value="Aviation">Aviation</option>
+                  <option value="Backpacking">Backpacking</option>
+                  <option value="Basketry">Basketry</option>
+                  <option value="Bird Study">Bird Study</option>
+                  <option value="Bugling">Bugling</option>
+                  <option value="Camping">Camping</option>
+                  <option value="Canoeing">Canoeing</option>
+                  <option value="Chemistry">Chemistry</option>
+                  <option value="Chess">Chess</option>
+                  <option value="Citizenship in the Community">Citizenship in the Community</option>
+                  <option value="Citizenship in the Nation">Citizenship in the Nation</option>
+                  <option value="Citizenship in the World">Citizenship in the World</option>
+                  <option value="Climbing">Climbing</option>
+                  <option value="Coin Collecting">Coin Collecting</option>
+                  <option value="Collections">Collections</option>
+                  <option value="Communication">Communication</option>
+                  <option value="Composite Materials">Composite Materials</option>
+                  <option value="Cooking">Cooking</option>
+                  <option value="Crime Prevention">Crime Prevention</option>
+                  <option value="Cycling">Cycling</option>
+                  <option value="Dentistry">Dentistry</option>
+                  <option value="Digital Technology">Digital Technology</option>
+                  <option value="Disabilities Awareness">Disabilities Awareness</option>
+                  <option value="Dog Care">Dog Care</option>
+                  <option value="Drafting">Drafting</option>
+                  <option value="Electricity">Electricity</option>
+                  <option value="Electronics">Electronics</option>
+                  <option value="Emergency Preparedness">Emergency Preparedness</option>
+                  <option value="Energy">Energy</option>
+                  <option value="Engineering">Engineering</option>
+                  <option value="Entrepreneurship">Entrepreneurship</option>
+                  <option value="Environmental Science">Environmental Science</option>
+                  <option value="Exploration">Exploration</option>
+                  <option value="Family Life">Family Life</option>
+                  <option value="Farm Mechanics">Farm Mechanics</option>
+                  <option value="Fingerprinting">Fingerprinting</option>
+                  <option value="Fire Safety">Fire Safety</option>
+                  <option value="First Aid">First Aid</option>
+                  <option value="Fish and Wildlife Management">Fish and Wildlife Management</option>
+                  <option value="Fishing">Fishing</option>
+                  <option value="Fly-Fishing">Fly-Fishing</option>
+                  <option value="Forestry">Forestry</option>
+                  <option value="Game Design">Game Design</option>
+                  <option value="Gardening">Gardening</option>
+                  <option value="Genealogy">Genealogy</option>
+                  <option value="Geocaching">Geocaching</option>
+                  <option value="Geology">Geology</option>
+                  <option value="Golf">Golf</option>
+                  <option value="Graphic Arts">Graphic Arts</option>
+                  <option value="Hiking">Hiking</option>
+                  <option value="Home Repairs">Home Repairs</option>
+                  <option value="Horsemanship">Horsemanship</option>
+                  <option value="Indian Lore">Indian Lore</option>
+                  <option value="Insect Study">Insect Study</option>
+                  <option value="Inventing">Inventing</option>
+                  <option value="Journalism">Journalism</option>
+                  <option value="Kayaking">Kayaking</option>
+                  <option value="Landscape Architecture">Landscape Architecture</option>
+                  <option value="Law">Law</option>
+                  <option value="Leatherwork">Leatherwork</option>
+                  <option value="Lifesaving">Lifesaving</option>
+                  <option value="Mammal Study">Mammal Study</option>
+                  <option value="Medicine">Medicine</option>
+                  <option value="Metalwork">Metalwork</option>
+                  <option value="Mining in Society">Mining in Society</option>
+                  <option value="Model Design and Building">Model Design and Building</option>
+                  <option value="Motorboating">Motorboating</option>
+                  <option value="Moviemaking">Moviemaking</option>
+                  <option value="Music">Music</option>
+                  <option value="Nature">Nature</option>
+                  <option value="Nuclear Science">Nuclear Science</option>
+                  <option value="Oceanography">Oceanography</option>
+                  <option value="Orienteering">Orienteering</option>
+                  <option value="Painting">Painting</option>
+                  <option value="Personal Fitness">Personal Fitness</option>
+                  <option value="Personal Management">Personal Management</option>
+                  <option value="Pets">Pets</option>
+                  <option value="Photography">Photography</option>
+                  <option value="Pioneering">Pioneering</option>
+                  <option value="Plant Science">Plant Science</option>
+                  <option value="Plumbing">Plumbing</option>
+                  <option value="Pottery">Pottery</option>
+                  <option value="Programming">Programming</option>
+                  <option value="Public Health">Public Health</option>
+                  <option value="Public Speaking">Public Speaking</option>
+                  <option value="Pulp and Paper">Pulp and Paper</option>
+                  <option value="Radio">Radio</option>
+                  <option value="Railroading">Railroading</option>
+                  <option value="Reading">Reading</option>
+                  <option value="Reptile and Amphibian Study">Reptile and Amphibian Study</option>
+                  <option value="Rifle Shooting">Rifle Shooting</option>
+                  <option value="Robotics">Robotics</option>
+                  <option value="Rowing">Rowing</option>
+                  <option value="Safety">Safety</option>
+                  <option value="Salesmanship">Salesmanship</option>
+                  <option value="Scholarship">Scholarship</option>
+                  <option value="Scouting Heritage">Scouting Heritage</option>
+                  <option value="Scuba Diving">Scuba Diving</option>
+                  <option value="Sculpture">Sculpture</option>
+                  <option value="Search and Rescue">Search and Rescue</option>
+                  <option value="Shotgun Shooting">Shotgun Shooting</option>
+                  <option value="Signs, Signals, and Codes">Signs, Signals, and Codes</option>
+                  <option value="Skating">Skating</option>
+                  <option value="Small-Boat Sailing">Small-Boat Sailing</option>
+                  <option value="Snow Sports">Snow Sports</option>
+                  <option value="Soil and Water Conservation">Soil and Water Conservation</option>
+                  <option value="Space Exploration">Space Exploration</option>
+                  <option value="Sports">Sports</option>
+                  <option value="Stamp Collecting">Stamp Collecting</option>
+                  <option value="Surveying">Surveying</option>
+                  <option value="Sustainability">Sustainability</option>
+                  <option value="Swimming">Swimming</option>
+                  <option value="Textile">Textile</option>
+                  <option value="Theater">Theater</option>
+                  <option value="Traffic Safety">Traffic Safety</option>
+                  <option value="Truck Transportation">Truck Transportation</option>
+                  <option value="Veterinary Medicine">Veterinary Medicine</option>
+                  <option value="Water Sports">Water Sports</option>
+                  <option value="Weather">Weather</option>
+                  <option value="Welding">Welding</option>
+                  <option value="Whitewater">Whitewater</option>
+                  <option value="Wilderness Survival">Wilderness Survival</option>
+                  <option value="Wood Carving">Wood Carving</option>
+                  <option value="Woodwork">Woodwork</option>
+                </select><br></p>
               <p><input name="merit_badge[completed]" type="checkbox"> Already completed this one?</p>
               <p>Notes:<textarea name="merit_badge[notes]" cols="40" rows="5">${store.notes[`${id}`]}</textarea></p><br>
               <small id="create-merit-help" class="form-text muted">Select you badge, set completion status, record any notes, and save your badge!<br>&nbsp;</small>

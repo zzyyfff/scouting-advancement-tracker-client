@@ -2,6 +2,7 @@
 
 const showMeritBadgesTemplate = require('../templates/merit_badge-listing.handlebars')
 const store = require('../store.js')
+const api = require('./api.js')
 
 store.notes = {}
 store.completed = {}
@@ -10,6 +11,24 @@ const getMeritBadgesSuccess = (data) => {
   console.log(data)
   const showMeritBadgesHtml = showMeritBadgesTemplate({ merit_badges: data.merit_badges })
   $('.content').append(showMeritBadgesHtml)
+
+  updateStats(data)
+}
+
+const updateStats = (data) => {
+  store.meritBadgeStats = data.merit_badges.reduce((accum, meritBadge) => {
+    accum.total++
+    if (meritBadge.completed) {
+      accum.completed++
+    } else {
+      accum.inProgress++
+    }
+    return accum
+  }, {total: 0, completed: 0, inProgress: 0})
+
+  $('#badges-completed').html(`${store.meritBadgeStats.completed} badges completed! ⭐️`)
+  $('#badges-in-progress').html(`${store.meritBadgeStats.inProgress} badges in progress`)
+  $('#badges-total').html(`${store.meritBadgeStats.total} total badges`)
 }
 
 const clearMeritBadges = () => {
@@ -19,12 +38,14 @@ const clearMeritBadges = () => {
 const deleteMeritBadgeSuccess = (id) => {
   console.log(`delete from api successful for id: ${store.badgeId}`)
   $('#' + store.badgeId).remove()
+  store.requestUpdateStats()
 }
 
 const updateMeritBadgeSuccess = (responseData) => {
   store.completed[`${responseData.merit_badge.id}`] = responseData.merit_badge.completed
   store.notes[`${responseData.merit_badge.id}`] = responseData.merit_badge.notes
   leaveEditMode(responseData.merit_badge.id)
+  store.requestUpdateStats()
 }
 
 const switchToEditMode = (id) => {
@@ -37,15 +58,21 @@ const switchToEditMode = (id) => {
 
   // switch display to input
   if ($('#' + id).find('.badge-completed').text().includes('Completed!')) {
+    store.completed[`${id}`] = true
     $('#' + id).find('.badge-completed').html(`<input name="merit_badge[completed]" type="checkbox" id="completed-box-${id}" checked> Completed?`)
   } else {
+    store.completed[`${id}`] = false
     $('#' + id).find('.badge-completed').html(`<input name="merit_badge[completed]" type="checkbox" id="completed-box-${id}"> Completed?`)
   }
 
-  // save existing Notes: string
-  let notesString = $('#' + id).find('.badge-notes').text()
-  notesString = notesString.slice(7 + notesString.indexOf('Notes: '))
-  store.notes[`${id}`] = notesString
+  // save existing Notes: string if it is anymore more than whitespace
+  let notesString = $('#' + id).find('.badge-notes').html()
+  notesString = notesString.slice(11 + notesString.indexOf('Notes: '))
+  if (notesString.replace(/\s/g, '')) {
+    store.notes[`${id}`] = notesString
+  } else {
+    store.notes[`${id}`] = ''
+  }
 
   // convert Notes: to editable textarea
   $('#' + id).find('.badge-notes').html(`Notes:<textarea name="merit_badge[notes]" cols="40" rows="3">${store.notes[`${id}`]}</textarea>`)
@@ -62,12 +89,12 @@ const leaveEditMode = (id) => {
 
   // return form fields to display-only mode
   if (store.completed[`${id}`]) {
-    $('#' + id).find('.badge-completed').html('Completed!')
+    $('#' + id).find('.badge-completed').html('<strong>⭐️ Completed! ⭐️</strong>')
   } else {
-    $('#' + id).find('.badge-completed').html('In progress.')
+    $('#' + id).find('.badge-completed').html('In progress...')
   }
-  if (store.notes[`${id}`]) {
-    $('#' + id).find('.badge-notes').html(`Notes: ${store.notes[`${id}`]}`)
+  if (store.notes[`${id}`].replace(/\s/g, '')) {
+    $('#' + id).find('.badge-notes').html(`Notes: <br>${store.notes[`${id}`]}`)
   } else {
     $('#' + id).find('.badge-notes').html('')
   }
@@ -77,6 +104,16 @@ const createMeritBadgeSuccess = (responseData) => {
   getMeritBadgesSuccess({merit_badges: [responseData.merit_badge]})
   $('#formModalMeritBadge').modal('hide')
   store.resetAllForms()
+  store.updateUserDisplay()
+  store.requestUpdateStats()
+}
+
+store.requestUpdateStats = function () {
+  if (store.user) {
+    api.getMeritBadges()
+      .then(updateStats)
+      .catch(failure)
+  }
 }
 
 const failure = (error) => {
@@ -91,5 +128,6 @@ module.exports = {
   clearMeritBadges,
   switchToEditMode,
   leaveEditMode,
+  updateStats,
   failure
 }

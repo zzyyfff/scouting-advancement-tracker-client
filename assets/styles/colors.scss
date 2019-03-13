@@ -1,11 +1,22 @@
 $testing-red: #f00;
 $testing-green: #0f0;
 $testing-blue: #00f;
-$testing-white: #fff;
-$testing-black: #000;
+
+$black-color: #000;
 
 $white-color: #fff;
-$black-color: #000;
+$spring-leaf-green-color: #8bc04a;
+$feijoa-fruit-green-color: #add280;
+$deco-green: #b9d992;
+$beryl-green-color: #c5dfa4;
+$burnt-sienna-orange-color: rgba(235, 106, 59, 1);
+$mariner-blue-color: #2f6bdb;
+$night-sky-navy-color: #0e1c36;
+
+// bootstrap overrides:
+$info: $burnt-sienna-orange-color;
+$primary: $mariner-blue-color;
+$warning: rgba(235, 106, 59, .8);
 
 $paper-white-color: #fefefe;
 $charcoal-grey-color: #4e4e4e;

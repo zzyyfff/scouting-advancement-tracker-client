@@ -5,20 +5,23 @@
     </h3>
     <p class="badge-completed">
       {{#if merit_badge.completed}}
-        Completed!
+        <strong>⭐️ Completed! ⭐️</strong>
       {{else}}
-        In progress.
+        In progress...
       {{/if}}
     </p>
     <p>&nbsp;</p>
     {{#if merit_badge.notes}}
       <p class="badge-notes">
-        Notes: {{merit_badge.notes}}
+        Notes: <br>{{merit_badge.notes}}
       </p>
     {{else}}
       <p class="badge-notes"></p>
     {{/if}}
   </form>
-  <button id="editMeritBadgeButton-{{merit_badge.id}}" class="editMeritBadgeButton btn btn-outline-info">Edit</button>
-  <button id="deleteMeritBadgeButton-{{merit_badge.id}}" class="deleteMeritBadgeButton btn btn-outline-info">Remove</button>
+  <br>
+
+  <button id="editMeritBadgeButton-{{merit_badge.id}}" class="editMeritBadgeButton btn btn-warning">Edit</button>
+  <button id="deleteMeritBadgeButton-{{merit_badge.id}}" class="deleteMeritBadgeButton btn btn-warning">Remove</button>
+
 </section>

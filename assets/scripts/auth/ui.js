@@ -27,17 +27,18 @@ const getDisplayName = function () {
   }
 }
 
-const updateUserDisplay = function () {
+store.updateUserDisplay = function () {
   store.displayName = getDisplayName()
   $('#welcome-name').text(`Welcome, ${store.displayName}!`)
   $('.name-display').text(store.user.first_name + ' ' + store.user.last_name)
   $('.rank-display').text('Rank: ' + store.user.scout_rank)
+  $('#first-name-field').val(store.user.first_name)
+  $('#last-name-field').val(store.user.last_name)
 }
 
 const signInSuccess = function (responseData) {
   meritBadgesUi.clearMeritBadges()
   store.user = responseData.user
-  updateUserDisplay()
   // ***** GET Merit Badges Gallery HERE*****
   meritBadgesApi.getMeritBadges()
     .then(meritBadgesUi.getMeritBadgesSuccess)
@@ -45,12 +46,14 @@ const signInSuccess = function (responseData) {
   fadeInWelcome()
   fadeOutAuth()
   store.resetAllForms()
+  store.updateUserDisplay()
 }
 
 const changePasswordSuccess = function (responseData) {
   $('#formModalCenter').modal('hide')
   createFeedback(`Successfully changed password.`, 3000)
   store.resetAllForms()
+  store.updateUserDisplay()
   $('#pass-change-help').removeClass('small-error')
   $('#pass-change-help').addClass('muted')
   $('#pass-change-help').html(`Enter both your old and new passwords to make the change.<br>&nbsp;`)
@@ -63,6 +66,7 @@ const changePasswordFailure = function (responseData) {
     $('#formModalCenter').modal('hide')
   } else {
     store.resetAllForms()
+    store.updateUserDisplay()
     $('#pass-change-help').removeClass('muted')
     $('#pass-change-help').addClass('small-error')
     $('#pass-change-help').html(`Incorrect Entry. Please enter your correct old and new passwords to make the change.<br>&nbsp;`)
@@ -122,7 +126,7 @@ const fadeInWelcome = function () {
 
 const resetPassChangeForm = function (form) {
   form.find('input:text, input:password, input:file, select, textarea').val('')
-
+  store.updateUserDisplay()
   $('#pass-change-help').removeClass('red')
   $('#pass-change-help').addClass('muted')
   $('#pass-change-help').html(`Enter both your old and new passwords to make the change.<br>&nbsp;`)
@@ -134,17 +138,17 @@ store.resetAllForms = function () {
 
 const changeRankSuccess = function (responseData) {
   store.user.scout_rank = responseData.user.scout_rank
-  updateUserDisplay()
-  $('#formModalRank').modal('hide')
   store.resetAllForms()
+  store.updateUserDisplay()
+  $('#formModalRank').modal('hide')
 }
 
 const changeNameSuccess = function (responseData) {
   store.user.first_name = responseData.user.first_name
   store.user.last_name = responseData.user.last_name
-  updateUserDisplay()
-  $('#formModalName').modal('hide')
   store.resetAllForms()
+  store.updateUserDisplay()
+  $('#formModalName').modal('hide')
 }
 
 module.exports = {

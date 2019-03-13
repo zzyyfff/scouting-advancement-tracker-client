@@ -1,9 +1,16 @@
 $dropdown-text-color: $charcoal-grey-color;
-$auth-form-background-color: $paper-white-color;
-$auth-form-background-color: $paper-white-color;
+$auth-form-background-color: $spring-leaf-green-color;
 $small-form-text: $muted-color;
 $small-form-error-text: $red-damask-color;
-$grey-out-game-color: $charcoal-grey-color;
+$body-background-color: $spring-leaf-green-color;
+$body-font-color: $night-sky-navy-color;
+$nav-background-color: $feijoa-fruit-green-color;
+$merit-badge-gallery-title-color: $mariner-blue-color;
+$dropdown-menu-background-color: $beryl-green-color;
+$modal-background-color: $deco-green;
+$section-background-color: $deco-green;
+$badge-button-font-color: $night-sky-navy-color;
+$strong-text-color: $mariner-blue-color;
 
 .alert {
   height: 30px;
@@ -18,6 +25,15 @@ $grey-out-game-color: $charcoal-grey-color;
 
 .badges-status {
   display: none;
+}
+
+body {
+  background-color: $body-background-color;
+  color: $body-font-color;
+}
+
+.dropdown-menu {
+  background-color: $dropdown-menu-background-color;
 }
 
 .dropdown-toggle {
@@ -93,7 +109,7 @@ $grey-out-game-color: $charcoal-grey-color;
 .handlebars {
   &:not(:empty) {
     &::before {
-      color: lighten($info, 25%);
+      color: $merit-badge-gallery-title-color;
       content: 'Your Merit Badges:';
       font-size: 1em;
       text-align: left;
@@ -114,7 +130,6 @@ main {
     @include media-breakpoint-up(lg) {
       @include make-col(4);
     }
-    background: $white;
     border-bottom: 1px solid;
     border-right: 1px solid;
     cursor: pointer;
@@ -154,6 +169,10 @@ main {
   }
 }
 
+.modal-content {
+  background-color: $modal-background-color;
+}
+
 .muted {
   color: $small-form-text;
 }
@@ -163,6 +182,7 @@ main {
 }
 
 nav {
+  background-color: $nav-background-color;
   z-index: 9000;
 }
 
@@ -171,14 +191,25 @@ nav {
 }
 
 .scout-display {
-  border: 1px blue dotted;
   display: flex;
   flex-wrap: wrap;
   min-height: 90vh;
 }
 
+section {
+  background-color: $section-background-color;
+
+  button {
+    color: $badge-button-font-color !important;
+  }
+}
+
 .small-error {
   color: $small-form-error-text;
+}
+
+strong {
+  color: $strong-text-color;
 }
 
 textarea {

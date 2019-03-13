@@ -60,6 +60,7 @@ const onChangeRank = function (event) {
 
 const onRankChangeClose = function (event) {
   store.resetAllForms()
+  store.updateUserDisplay()
 }
 
 const onChangeName = function (event) {
@@ -72,6 +73,7 @@ const onChangeName = function (event) {
 
 const onNameChangeClose = function (event) {
   store.resetAllForms()
+  store.updateUserDisplay()
 }
 
 const addHandlers = () => {
