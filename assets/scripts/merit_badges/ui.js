@@ -8,7 +8,6 @@ store.notes = {}
 store.completed = {}
 
 const getMeritBadgesSuccess = (data) => {
-  console.log(data)
   const showMeritBadgesHtml = showMeritBadgesTemplate({ merit_badges: data.merit_badges })
   $('.content').append(showMeritBadgesHtml)
 
@@ -36,7 +35,6 @@ const clearMeritBadges = () => {
 }
 
 const deleteMeritBadgeSuccess = (id) => {
-  console.log(`delete from api successful for id: ${store.badgeId}`)
   $('#' + store.badgeId).remove()
   store.requestUpdateStats()
 }
@@ -117,7 +115,15 @@ store.requestUpdateStats = function () {
 }
 
 const failure = (error) => {
-  console.error(error)
+  createFeedback(error, 3000)
+}
+const createFeedback = function (feedbackText, delay) {
+  $('.auth-status').html(feedbackText)
+  $('.auth-status').fadeIn(300)
+
+  setTimeout(() => {
+    $('.auth-status').fadeOut(300)
+  }, delay)
 }
 
 module.exports = {
