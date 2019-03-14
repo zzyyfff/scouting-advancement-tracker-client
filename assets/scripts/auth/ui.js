@@ -103,23 +103,18 @@ const signOutFailure = function (responseData) {
 const fadeOutSignIn = function () {
   $('.sign-in-div').fadeOut(300)
 }
-
 const fadeInSignIn = function () {
   $('.sign-in-div').fadeIn(300)
 }
-
 const fadeOutAuth = function () {
   $('.initial-auth-form').fadeOut(300)
 }
-
 const fadeInAuth = function () {
   $('.initial-auth-form').fadeIn(300)
 }
-
 const fadeOutWelcome = function () {
   $('.welclome-dropdown').fadeOut(300)
 }
-
 const fadeInWelcome = function () {
   $('.welclome-dropdown').fadeIn(300)
 }

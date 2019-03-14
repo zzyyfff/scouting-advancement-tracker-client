@@ -117,6 +117,7 @@ store.requestUpdateStats = function () {
 const failure = (error) => {
   createFeedback(error, 3000)
 }
+
 const createFeedback = function (feedbackText, delay) {
   $('.badges-status').html(feedbackText)
   $('.badges-status').fadeIn(300)
