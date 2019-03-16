@@ -30,10 +30,6 @@ const updateStats = (data) => {
   $('#badges-total').html(`${store.meritBadgeStats.total} total badges`)
 }
 
-const clearMeritBadges = () => {
-  $('.content').empty()
-}
-
 const deleteMeritBadgeSuccess = (id) => {
   $('#' + store.badgeId).remove()
   store.requestUpdateStats()
@@ -132,7 +128,6 @@ module.exports = {
   deleteMeritBadgeSuccess,
   updateMeritBadgeSuccess,
   createMeritBadgeSuccess,
-  clearMeritBadges,
   switchToEditMode,
   leaveEditMode,
   updateStats,

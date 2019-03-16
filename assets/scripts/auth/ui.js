@@ -37,7 +37,7 @@ store.updateUserDisplay = function () {
 }
 
 const signInSuccess = function (responseData) {
-  meritBadgesUi.clearMeritBadges()
+  $('.content').empty()
   store.user = responseData.user
   // ***** GET Merit Badges Gallery HERE*****
   meritBadgesApi.getMeritBadges()
@@ -74,11 +74,11 @@ const changePasswordFailure = function (responseData) {
 }
 
 const signOutSuccess = function (responseData) {
-  store.user = null
   fadeOutWelcome()
   store.resetAllForms()
   fadeInAuth()
-  meritBadgesUi.clearMeritBadges()
+  $('.content').empty()
+  store.user = null
 }
 
 const failure = function (responseData) {
@@ -97,6 +97,8 @@ const signUpFailure = function (responseData) {
 
 const signOutFailure = function (responseData) {
   createFeedback(`Sign out failure; please sign-in again.`, 4000)
+  console.log('========responseData===========')
+  console.log(responseData)
   signOutSuccess()
 }
 
@@ -129,6 +131,7 @@ const resetPassChangeForm = function (form) {
 
 store.resetAllForms = function () {
   $('form').find('input:text, input:password, input:file, select, textarea').val('')
+  $('#sign-in-email-field').val('')
 }
 
 const changeRankSuccess = function (responseData) {
