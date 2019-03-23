@@ -132,6 +132,7 @@ const resetPassChangeForm = function (form) {
 store.resetAllForms = function () {
   $('form').find('input:text, input:password, input:file, select, textarea').val('')
   $('#sign-in-email-field').val('')
+  $('#sign-up-email-field').val('')
 }
 
 const changeRankSuccess = function (responseData) {
